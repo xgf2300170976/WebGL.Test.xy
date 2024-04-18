@@ -92,13 +92,23 @@
             var image = document.createElement('img');
             image.src = 'data:image/png;base64,' + base64Image;
             image.style.position = 'fixed';
-            image.style.top = '0';
-            image.style.left = '0';
-            image.style.width = '100%';
-            image.style.height = '100%';
+            image.style.top = '15%';
+            image.style.left = '15%';
+            image.style.width = '70%';
+            image.style.height = '70%';
             image.style.zIndex = '999';
             document.body.appendChild(image);
-            
+        
+            // 创建关闭按钮
+            var button = document.createElement('button');
+            button.innerHTML = 'Close';
+            button.style.position = 'fixed';
+            button.style.bottom = '15%';
+            button.style.left = '50%';
+            button.style.transform = 'translateX(-50%)';
+            button.style.zIndex = '1000';
+            document.body.appendChild(button);
+        
             // 创建提示文本元素
             var text = document.createElement('p');
             text.innerHTML = '长按保存图片';
@@ -115,11 +125,13 @@
             text.style.borderRadius = '5px';
             text.style.zIndex = '1000';
             document.body.appendChild(text);
-            
-            image.onclick = function() { 
-                this.style.display = 'none'; 
-                text.style.display = 'none'; 
-            };   // 点击图像隐藏，同时隐藏提示
+        
+            // 点击按钮或图片都会导致图片和按钮都隐藏
+            button.onclick = image.onclick = function() {
+                image.style.display = 'none';
+                text.style.display = 'none';
+                button.style.display = 'none';
+            }
         }
         </script>
 
